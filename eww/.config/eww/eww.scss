@@ -1,0 +1,58 @@
+.widget-box {
+    background-color: #1e1e2e;
+    border: 2px solid #cba6f7;
+    padding: 12px;
+}
+
+.clock-time {
+    color: #cba6f7;
+    font-size: 36px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+}
+
+.clock-date {
+    color: #a6e3a1;
+    font-size: 13px;
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+.weather-text {
+    color: #89b4fa;
+    font-size: 13px;
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+.divider {
+    background-color: #313244;
+    min-height: 1px;
+    margin: 4px 0;
+}
+
+.info-text {
+    color: #cdd6f4;
+    font-size: 11px;
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+.calendar-text {
+    color: #cdd6f4;
+    font-size: 10px;
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+.dir-btn {
+    color: #cdd6f4;
+    font-size: 11px;
+    font-family: "JetBrainsMono Nerd Font";
+    background-color: #313244;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin: 2px 0;
+    border: none;
+}
+
+.dir-btn:hover {
+    background-color: #45475a;
+    color: #cba6f7;
+}

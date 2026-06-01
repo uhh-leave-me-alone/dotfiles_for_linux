@@ -1,0 +1,94 @@
+* {
+    font-family: "JetBrainsMono Nerd Font Mono";
+    font-size: 14px;
+    min-height: 0;
+    border: none;
+    border-radius: 0px;
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 1);
+    border-top: 2px solid #cba6f7;
+    color: #cdd6f4;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    margin: 3px 2px;
+    background: transparent;
+    color: #a6adc8;
+    border-radius: 0px;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+    background: #f5c2e7;
+    color: #1e1e2e;
+}
+
+#workspaces button.urgent {
+    background: #f38ba8;
+    color: #1e1e2e;
+}
+
+#workspaces button:hover {
+    background: #45475a;
+    color: #cdd6f4;
+}
+
+#window {
+    color: #cdd6f4;
+    padding: 0 8px;
+}
+
+#clock,
+#custom-date,
+#battery,
+#cpu,
+#memory,
+#backlight,
+#network,
+#pulseaudio,
+#language,
+#tray {
+    padding: 0 10px;
+    margin: 3px 2px;
+    background: #313244;
+    color: #cdd6f4;
+    border-radius: 0px;
+}
+
+#clock { color: #a6e3a1; }
+#battery { color: #a6e3a1; }
+#battery.warning { color: #f9e2af; }
+#battery.critical { color: #f38ba8; }
+#cpu { color: #89b4fa; }
+#memory { color: #f5c2e7; }
+#custom-date { color: #f5c2e7; }
+#backlight { color: #f9e2af; }
+#network { color: #94e2d5; }
+#pulseaudio { color: #f9e2af; }
+#pulseaudio.muted { color: #6c7086; }
+#language { color: #cba6f7; }
+#power-profiles-daemon {
+    padding: 0 10px;
+    margin: 3px 2px;
+    background: #313244;
+    color: #cdd6f4;
+    border-radius: 0px;
+}
+
+#power-profiles-daemon.performance { color: #f38ba8; }
+#power-profiles-daemon.balanced { color: #a6e3a1; }
+#power-profiles-daemon.power-saver { color: #89b4fa; }
+
+tooltip {
+    background: #1e1e2e;
+    border: 1px solid #cba6f7;
+    border-radius: 0px;
+    color: #cdd6f4;
+}

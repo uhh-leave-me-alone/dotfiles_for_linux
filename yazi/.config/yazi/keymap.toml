@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on = "T"
+run = "shell '/usr/bin/kitty' --orphan"
+desc = "Open terminal here"

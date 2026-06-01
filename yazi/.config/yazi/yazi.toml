@@ -1,0 +1,29 @@
+[opener]
+edit = [
+    { run = 'nvim "$@"', block = true }
+]
+
+imageviewer = [
+    { run = 'feh "$@"', orphan = true}
+]
+
+rnote = [
+    { run = '/snap/bin/rnote "$@"', orphan = true }
+]
+
+[open]
+prepend_rules = [
+    { mime = "application/gzip", name = "*.rnote", use = "rnote" },
+    { mime = "text/*", use = "edit" },
+]
+
+[manager]
+ratio = [1, 2, 3]
+sort_by = "natural"
+sort_dir_first = true
+show_hidden = false
+
+[preview]
+max_width = 600
+max_height = 900
+

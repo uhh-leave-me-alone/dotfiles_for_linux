@@ -1,0 +1,94 @@
+(defwindow widget
+  :monitor 0
+  :geometry (geometry
+    :x "20px"
+    :y "20px"
+    :width "220px"
+    :height "650px"
+    :anchor "top left")
+  :stacking "bottom"
+  :exclusive false
+  :focusable false
+  (box :class "widget-box" :orientation "v" :space-evenly false :spacing 6
+    (label :class "clock-time" :text {time})
+    (label :class "clock-date" :text {date})
+    (label :class "weather-text" :text {weather})
+    (box :class "divider")
+    (label :class "info-text" :text "CPU: ${cpu}%")
+    (label :class "info-text" :text "RAM: ${ram}")
+    (label :class "info-text" :text "Disk: ${disk}")
+    (label :class "info-text" :text "Bat: ${battery}")
+    (label :class "info-text" :text "Uptime: ${uptime}")
+    (label :class "info-text" :text "↓ ${net_down}  ↑ ${net_up}")
+    (box :class "divider")
+    (label :class "info-text" :text "🔊 ${volume}")
+    (label :class "info-text" :text "☀ ${brightness}")
+    (box :class "divider")
+    (label :class "calendar-text" :text {calendar})
+    (box :class "divider")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~ &" "~  Home")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/dotfiles &" "  Dotfiles")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/Documents &" "  Documents")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/Downloads &" "  Downloads")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/.config/sway &" "  Sway")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/.config/waybar &" "  Waybar")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/.config/kitty &" "  Kitty")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/.config/mako &" "  Mako")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/.config/rofi &" "  Rofi")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/.config/eww &" "  Eww")
+    (button :class "dir-btn" :onclick "kitty -e yazi ~/.config/yazi &" "  Yazi")
+    (button :class "dir-btn" :onclick "kitty -e vim ~/.vimrc &" "  .vimrc (will be opened with vim)")
+    (button :class "dir-btn" :onclick "kitty -e nvim ~/.zshrc &" "  .zshrc")
+    (button :class "dir-btn" :onclick "kitty -e nvim ~/.config/nvim/init.lua &" "  .neovim (init.lua)")))
+
+(defpoll time :interval "1s"
+  :initial "00:00"
+  `date +%H:%M`)
+
+(defpoll date :interval "60s"
+  :initial "..."
+  `date "+%d %B %Y"`)
+
+(defpoll weather :interval "600s"
+  :initial "Loading..."
+  `curl -sf "wttr.in/Moscow?format=%c+%t+%h" 2>/dev/null || echo "No Data"`)
+
+(defpoll cpu :interval "3s"
+  :initial "0"
+  `top -bn1 | grep "Cpu(s)" | awk '{print int($2)}'`)
+
+(defpoll ram :interval "3s"
+  :initial "..."
+  `free -h | awk '/^Mem/ {print $3"/"$2}'`)
+
+(defpoll disk :interval "30s"
+  :initial "..."
+  `df -h / | awk 'NR==2 {print $3"/"$2}'`)
+
+(defpoll battery :interval "30s"
+  :initial "..."
+  `cat /sys/class/power_supply/BAT0/capacity 2>/dev/null | xargs -I{} echo "{}%"`)
+
+(defpoll uptime :interval "60s"
+  :initial "..."
+  `uptime -p | sed 's/up //'`)
+
+(defpoll net_down :interval "3s"
+  :initial "0"
+  `cat /proc/net/dev | awk '/wlp/ {print int($2/1024)"KB"}'`)
+
+(defpoll net_up :interval "3s"
+  :initial "0"
+  `cat /proc/net/dev | awk '/wlp/ {print int($10/1024)"KB"}'`)
+
+(defpoll volume :interval "2s"
+  :initial "0"
+  `pamixer --get-volume 2>/dev/null || echo "0"`)
+
+(defpoll brightness :interval "2s"
+  :initial "0"
+  `brightnessctl get | xargs -I{} bash -c 'echo "$(( {} * 100 / $(brightnessctl max) ))%"'`)
+
+(defpoll calendar :interval "3600s"
+  :initial "..."
+  `cal | sed 's/^/ /'`)
