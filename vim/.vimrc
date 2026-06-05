@@ -55,3 +55,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+inoremap jj <Esc>
+inoremap jk <Esc>
+set timeoutlen=300  " 300 миллисекунд вместо 1000
+

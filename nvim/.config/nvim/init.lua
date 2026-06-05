@@ -52,6 +52,10 @@ vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20"
 
 -- Сброс подсветки поиска по Esc
 vim.keymap.set('n', '<Esc>', ':nohl<CR><Esc>', { silent = true })
+-- Выход из режима вставки по jj
+vim.keymap.set('i', 'jj', '<Esc>')
+-- Уменьшаем таймаут
+vim.opt.timeoutlen = 200
 
 -- Навигация между сплитами
 vim.keymap.set('n', '<C-h>', '<C-w>h')
